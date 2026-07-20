@@ -1,26 +1,11 @@
-<?php
- include'config.php';
-$msg="";
-if(isset($_POST['submit'])){
-$student_id= $_POST['student_id'];
-$name=$_POST['name'];
-$department=$_POST['department'];
-$email=$_POST['email'];
 
-$sql= "INSERT INTO students (student_id,name,department,email)VALUES('$student_id','$name','$department','$email')";
-if($conn->query($sql)===TRUE){ 
-$msg="Student Added successfully!";
-}else{
-$msg="Error:".$conn->error;
-}
-}
-?>
 
 
 
 <!DOCTYPE html>
-<html >
+<html lang="ar" dir="ltr" >
 <head>
+  <meta charset="UTF-8">
 <title> Add Student</title></head>
 <body>
 <h2> Add New Student</h2>
