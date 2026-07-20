@@ -10,7 +10,7 @@
 <header>
 <h1 studen management system  </h1>
 <nav>
-<a href ="index.html"> Home</a>
+<a href ="index.php"> Home</a>
 <a  href="AddStudent.php">Add student</a>
 <a href="ViewStudent.php">Student </a>
 <a href="login.php"> Login</a>
