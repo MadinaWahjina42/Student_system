@@ -1,3 +1,3 @@
-funtion showMessage(){
-alert("Welcom to Student Management System!");
+function showMessage(){
+alert("Welcome to Student Management System!");
 }
