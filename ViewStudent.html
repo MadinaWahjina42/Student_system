@@ -1,70 +1,85 @@
 
-<?php
-session_start();
-include "config.php";
-if(!isset($_SESSION['user'])){header("Location: login.php");exit();}
 
-$msg="";
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $grade = $_POST['grade'];
-    $address = $_POST['address'];
-
-    $stmt = $conn->prepare("INSERT INTO students (name, phone, grade, address) VALUES (?, ?, ?, ?)");
-
-    $stmt->bind_param("ssss", $name, $phone, $grade, $address);
-    
-    if($stmt->execute()){
-        $msg = '<div class="alert">Student Saved Successfully ✅</div>';
-    } else {
-        $msg = '<div class="alert error">Error: '.$stmt->error.'</div>';
-    }
-    $stmt->close();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta 
-
-name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Student</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="/Student_system/css/style.css">
 </head>
 <body>
+
+<header>
+    <h1>Student Management System</h1>
+</header>
+
 <div class="container">
-    <h1><i class="fa-solid fa-user-plus"></i> Add New Student</h1>
-    <?php echo $msg; ?>
-    <form method="POST">
-        <label>Student Full Name</label>
+    <div class="form-box">
+        <h2>➕ Add New Student</h2>
 
-        <input type="text" name="name" required>
+        <form id="addForm">
+            <table>
+                <tr>
+                    <td><label>Student Full Name:</label></td>
+                    <td><input type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label>Parent:</label></td>
+                    <td><input type="text" name="parent"></td>
+                </tr>
+                <tr>
+                    <td><label>Phone Number:</label></td>
+                    <td><input type="text" 
 
-        <label>Parent Phone Number</label>
-        <input type="tel" name="phone" required>
+name="phone" required></td>
+                </tr>
+                <tr>
+                    <td><label>Grade / Class:</label></td>
+                    <td>
+                        <select name="grade" required>
+                            <option value="">Select Grade</option>
+                            <option>Grade 1</option>
+                            <option>Grade 2</option>
+                            <option>Grade 3</option>
+                        </select>
+                    </td>
 
-        <label>Grade / Class</label>
-        <select name="grade" required>
-            <option value="">Select Grade</option>
-            <option value="Grade 1">Grade 1</option>
-            <option value="Grade 2">Grade 2</option>
-            <option value="Grade 3">Grade 3</option>
-
-            <option value="Grade 4">Grade 4</option>
-            <option value="Grade 5">Grade 5</option>
-            <option value="Grade 6">Grade 6</option>
-        </select>
-
-        <label>Address</label>
-        <textarea name="address" rows="2"></textarea>
-
-        <button type="submit" class="btn-menu btn-green"><i class="fa-solid fa-floppy-disk"></i> Save Student</button>
-        <a href="index.php" class="btn-menu btn-blue"><i class="fa-solid fa-
-
-house"></i> Back to Home</a>
-    </form>
+                </tr>
+                <tr>
+                    <td><label>Address:</label></td>
+                    <td><input type="text" name="address"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">💾 Save Student</button></td>
+                </tr>
+            </table>
+        </form>
+        <a href="/Student_system/index.html">Back to Home</a>
+    </div>
 </div>
+
+
+<script>
+document.getElementById("addForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let student = {
+        id: Date.now(), // رقم تلقائي
+        name: this.name.value,
+        parent: this.parent.value,
+        phone: this.phone.value,
+        dept: this.grade.value,
+        email: "", // لو ما عندك ايميل
+        address: this.address.value
+    };
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    students.push(student);
+    localStorage.setItem("students", JSON.stringify(students));
+    
+    alert("Student Saved Successfully ✅");
+    this.reset();
+});
+</script>
+
 </body>
 </html>
