@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <title>Add Student</title>
     <link rel="stylesheet" href="/Student_system/css/style.css">
-   
-
-        
 </head>
 <body>
 
@@ -15,10 +12,11 @@
         <h1>Student Management System</h1>
         <nav>
             <a href="/Student_system/index.html">Home</a>
-            <a href="/Student_system/Addstudent.html">Add Student</a>
+            <a href="/Student_system/
+
+Addstudent.html">Add Student</a>
             <a href="/Student_system/ViewStudent.html">View Students</a>
             <a href="/Student_system/login.html">Login</a>
-
             <a href="/Student_system/register.html">Register</a>
         </nav>
     </header>
@@ -26,40 +24,37 @@
     <div class="container">
         <div class="form-box">
             <h2>Add New Student</h2>
-            <form>
-                <label>Student ID:</label>
-                <input type="text" name="id" placeholder="Enter Student ID" required>
+            <form id="studentForm">
+                <table>
+                    <tr>
+                        <td><label>Student 
 
-                <label>Name:</label>
-                <input type="text" name="name" placeholder="Enter Name" required>
+ID:</label></td>
+                        <td><input type="text" name="id" placeholder="Enter Student ID" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Name:</label></td>
+                        <td><input type="text" name="name" placeholder="Enter Name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Department:</label></td>
+                        <td><input type="text" name="dept" placeholder="Enter 
 
-
-                <label>Department:</label>
-                <input type="text" name="dept" placeholder="Enter Department" required>
-
-                <label>Email:</label>
-                <input type="email" name="email" placeholder="Enter Email" required>
-
-                <button type="submit">Add Student</button>
+Department" required></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email:</label></td>
+                        <td><input type="email" name="email" placeholder="Enter Email" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Add Student</button></td>
+                    </tr>
+                </table>
             </form>
+
         </div>
     </div>
 
-<script>
-document.querySelector("form").addEventListener("submit", function(e){
-    e.preventDefault();
-    let student = {
-        id: document.querySelector("input[name='id']").value,
-        name: document.querySelector("input[name='name']").value,
-        dept: document.querySelector("input[name='dept']").value,
-        email: document.querySelector("input[name='email']").value
-    };
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-    students.push(student);
-    localStorage.setItem("students", JSON.stringify(students));
-    alert("Student Added Successfully!");
-    this.reset();
-});
-</script>
+    <script src="/Student_system/js/script.js"></script>
 </body>
 </html>
