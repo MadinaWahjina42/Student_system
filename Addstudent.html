@@ -5,38 +5,9 @@
     <meta charset="UTF-8">
     <title>Add Student</title>
     <link rel="stylesheet" href="/Student_system/css/style.css">
-    <style>
-        .form-box{
-            width: 400px;
-            margin: 30px auto;
-            padding: 20px;
-            border: 2px solid #2c7a2f;
-            border-radius: 10px;
-            background: #1a1a1a;
-            color: white;
-        }
+   
 
-        .form-box input{
-            width: 95%;
-            padding: 8px;
-            margin: 8px 0;
-            background: #333;
-            border: 1px solid #555;
-            color: white;
-        }
-        .form-box button{
-            width: 100%;
-            padding: 10px;
-            background: #2c7a2f;
-            color: white;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .form-box 
-
-button:hover{background: #246428;}
-    </style>
+        
 </head>
 <body>
 
@@ -75,26 +46,20 @@ button:hover{background: #246428;}
     </div>
 
 <script>
-
 document.querySelector("form").addEventListener("submit", function(e){
     e.preventDefault();
-    
     let student = {
         id: document.querySelector("input[name='id']").value,
         name: document.querySelector("input[name='name']").value,
         dept: document.querySelector("input[name='dept']").value,
         email: document.querySelector("input[name='email']").value
     };
-
-
     let students = JSON.parse(localStorage.getItem("students")) || [];
     students.push(student);
     localStorage.setItem("students", JSON.stringify(students));
-    
     alert("Student Added Successfully!");
     this.reset();
 });
 </script>
-
 </body>
 </html>
